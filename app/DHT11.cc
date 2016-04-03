@@ -5,6 +5,7 @@
 
 int main(int argc, char* argv[]) {
     using namespace bsdroid;
+    using namespace std::chrono_literals;
 
     if (argc < 2) {
         printf("Usage: %s <pin>\n", argv[0]);
@@ -20,7 +21,6 @@ int main(int argc, char* argv[]) {
         auto ok = dht11.read(humidity, temperature);
         if (ok == DHT11::RESULT::OK) {
             std::cout << humidity << ", " << temperature << std::endl;
-            using namespace std::chrono_literals;
         };
         std::this_thread::sleep_for(500ms);
     }
