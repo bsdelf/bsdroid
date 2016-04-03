@@ -6,7 +6,12 @@
 int main(int argc, char* argv[]) {
     using namespace bsdroid;
 
-    GPIO::Pin pin = GPIO().pin(121);
+    if (argc < 2) {
+        printf("Usage: %s <pin>\n", argv[0]);
+        exit(1);
+    }
+
+    GPIO::Pin pin = GPIO().pin(atoi(argv[1]));
     auto config = pin.config();
     printf("name: %s, caps: %u, flags: %u\n", config.g_name, config.g_caps, config.g_flags);
 
@@ -20,5 +25,5 @@ int main(int argc, char* argv[]) {
         };
     }
 
-    return 0;
+    exit(0);
 }
