@@ -1,8 +1,5 @@
 #pragma once
 
-#include <stdio.h>
-#include <strings.h>
-#include <inttypes.h>
 #include <libgpio.h>
 
 namespace bsdroid {
