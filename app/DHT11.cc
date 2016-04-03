@@ -1,6 +1,7 @@
 // c++ -O2 -std=c++14 -lgpio -I../lib DHT11.cc 
 
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <DHT11.h>
 
 int main(int argc, char* argv[]) {
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]) {
     for (int humidity, temperature; ; ) {
         auto ok = dht11.read(humidity, temperature);
         if (ok == DHT11::RESULT::OK) {
-            std::cout << humidity << ", " << temperature << std::endl;
+            printf("%d%%, %d°C\n", humidity, temperature);
         };
         std::this_thread::sleep_for(500ms);
     }
