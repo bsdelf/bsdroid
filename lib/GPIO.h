@@ -6,11 +6,11 @@ namespace bsdroid {
     class GPIO {
         friend class Pin;
 
-        public:
+    public:
         class Pin {
             friend class GPIO;
 
-            public:
+        public:
             gpio_config_t config() const {
                 gpio_config_t config = { .g_pin = _pin };
                 gpio_pin_config(_gpioc, &config);
@@ -47,11 +47,11 @@ namespace bsdroid {
                 gpio_pin_low(_gpioc, _pin);
             }
 
-            private:
+        private:
             Pin(int gpioc, int pin, std::shared_ptr<int> ref):
                 _gpioc(gpioc), _pin(pin), _ref(ref) { }
 
-            public:
+        public:
             ~Pin() {
                 if (_ref.unique()) {
                     gpio_close(_gpioc);
@@ -64,7 +64,7 @@ namespace bsdroid {
             const std::shared_ptr<int> _ref;
         };
 
-        public:
+    public:
         explicit GPIO(int ith = 0) {
             _gpioc = gpio_open(ith);
             _ref = std::make_shared<int>();
@@ -85,7 +85,7 @@ namespace bsdroid {
             return Pin(_gpioc, pin, _ref);
         }
 
-        private:
+    private:
         int _gpioc;
         std::shared_ptr<int> _ref;
     };
